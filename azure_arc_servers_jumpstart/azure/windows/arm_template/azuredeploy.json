@@ -171,11 +171,11 @@
             "apiVersion": "2022-05-01",
             "condition": "[parameters('deployBastion')]",
             "dependsOn": [ "[resourceId('Microsoft.Network/networkSecurityGroups/', parameters('networkSecurityGroupName'))]" ],
-            "name": "[concat(parameters('networkSecurityGroupName'),'/allow_RDP_3389')]",
+            "name": "[concat(parameters('networkSecurityGroupName'),'/deny_RDP_3389')]",
             "properties": {
                 "priority": 1001,
                 "protocol": "TCP",
-                "access": "Allow",
+                "access": "Deny",
                 "direction": "Inbound",
                 "sourceAddressPrefix": "[variables('bastionSubnetIpPrefix')]",
                 "sourcePortRange": "*",
