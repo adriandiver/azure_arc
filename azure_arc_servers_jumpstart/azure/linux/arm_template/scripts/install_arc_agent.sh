@@ -43,23 +43,6 @@ echo "Reconfiguring Hostname"
 sudo hostname $VMNAME
 sudo -E /bin/sh -c 'echo $VMNAME > /etc/hostname'
 
-# Download the installation package
-wget https://aka.ms/azcmagent -O ~/install_linux_azcmagent.sh
-
-# Install the hybrid agent
-sudo bash ~/install_linux_azcmagent.sh
-
-# Run connect command
-sudo azcmagent connect \
-  --service-principal-id "${APPID}" \
-  --service-principal-secret "${PASSWORD}" \
-  --resource-group "${RG}" \
-  --tenant-id "${TENANTID}" \
-  --location "${LOCATION}" \
-  --subscription-id "${SUBSCRIPTIONID}" \
-  --tags "Project=jumpstart_azure_arc_servers" \
-  --correlation-id "d009f5dd-dba8-4ac7-bac9-b54ef3a6671a"
-
 rm -f /home/$USER/.bash_profile
 
 EOT
